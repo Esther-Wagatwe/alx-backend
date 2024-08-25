@@ -23,7 +23,15 @@ How to paginate a dataset with hypermedia metadata.
 How to paginate in a deletion-resilient manner.
 
 
-* **0. Basic annotations - add** - Write a function named `index_range` that takes two integer arguments `page` and `page_size`. - `0-simple_helper_function.py`.
-* **1. Basic annotations - concat** - Implement a method named `get_page` that takes two integer arguments `page` with default value 1 and `page_size` with default value 10. - `1-simple_pagination.py`.
-* **2. Hypermedia pagination** - Implement a `get_hyper` method that takes the same arguments (and defaults) as `get_page` and returns a dictionary containing the given key-value pairs. - `2-hypermedia_pagination.py`.
-* **3. Deletion-resilient hypermedia pagination** - Implement a `get_hyper_index` method with two integer arguments: `index` with a `None` default value and `page_size` with default value of 10. - `3-hypermedia_del_pagination.py`.
+* **0. Basic annotations - add**
+[0-simple_helper_function.py](./0-simple_helper_function.py)
+Write a function named `index_range` that takes two integer arguments `page` and `page_size`. - `0-simple_helper_function.py`.
+* **1. Basic annotations - concat**
+[1-simple_pagination.py](./1-simple_pagination.py)
+Implement a method named `get_page` that takes two integer arguments `page` with default value 1 and `page_size` with default value 10. - `1-simple_pagination.py`.
+* **2. Hypermedia pagination**
+[2-hypermedia_pagination.py](./2-hypermedia_pagination.py)
+Implement a `get_hyper` method that takes the same arguments (and defaults) as `get_page` and returns a dictionary containing the given key-value pairs. - `2-hypermedia_pagination.py`.
+* **3. Deletion-resilient hypermedia pagination**
+[3-hypermedia_del_pagination.py](./3-hypermedia_del_pagination.py)
+Implement a `get_hyper_index` method with two integer arguments: `index` with a `None` default value and `page_size` with default value of 10. - `3-hypermedia_del_pagination.py`.
