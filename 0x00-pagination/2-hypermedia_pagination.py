@@ -78,7 +78,8 @@ class Server:
             metadata, including the current page, page size, dataset page,
             total pages, and links to the next and previous pages
             (if available).
-        """        data = self.get_page(page, page_size)
+        """
+        data = self.get_page(page, page_size)
         total_items = len(self.dataset())
         start_page, end_page = index_range(page, page_size)
         total_pages = math.ceil(total_items / page_size)
