@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""MRUCache module that inherits from BaseCaching"""
 from collections import OrderedDict
 BaseCaching = __import__('base_caching').BaseCaching
-"""MRUCache module that inherits from BaseCaching"""
 
 
 class MRUCache(BaseCaching):
