@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from collections import OrderedDict
 BaseCaching = __import__('base_caching').BaseCaching
 """LRUCache module that inherits from BaseCaching"""

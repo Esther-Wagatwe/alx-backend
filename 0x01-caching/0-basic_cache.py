@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 BaseCaching = __import__('base_caching').BaseCaching
 """BasicCache module that inherits from BaseCaching"""
 
