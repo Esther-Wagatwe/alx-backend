@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from collections import OrderedDict
-BaseCaching = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 """FIFOCache module that inherits from BaseCaching"""
 
 
