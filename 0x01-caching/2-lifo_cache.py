@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""LIFOCache module that inherits from BaseCaching"""
 from collections import OrderedDict
 BaseCaching = __import__('base_caching').BaseCaching
-"""LIFOCache module that inherits from BaseCaching"""
 
 
 class LIFOCache(BaseCaching):
