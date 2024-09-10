@@ -37,13 +37,13 @@ def get_user() -> Union[Dict, None]:
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """Set the user in flask.g."""
     g.user = get_user()
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """
     Select the best match for the user's preferred language.
     Uses request.accept_languages to match against supported languages.
@@ -57,7 +57,7 @@ def get_locale():
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """default route"""
     if g.user:
         return render_template('5-index.html', username=g.user['name'])
