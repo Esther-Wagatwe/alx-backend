@@ -46,14 +46,21 @@ def before_request() -> None:
 def get_locale() -> str:
     """
     Select the best match for the user's preferred language.
-    Uses request.accept_languages to match against supported languages.
-    Checks if the 'locale' parameter is present in the request arguments
-    and if it is a supported locale.
+    Follows the order of priority:
+    1. Locale from URL parameters
+    2. Locale from user settings
+    3. Locale from request headers
+    4. Default locale
     """
     locale = request.args.get('locale', None)
     if locale and locale in app.config['LANGUAGES']:
         return locale
-    return request.accept_languages.best_match(app.config["LANGUAGES"])
+    if g.user and g.user.get('locale') in app.config['LANGUAGES']:
+        return g.user['locale']
+    locale = request.accept_languages.best_match(app.config['LANGUAGES'])
+    if locale:
+        return locale
+    return app.config['BABEL_DEFAULT_LOCALE']
 
 
 @app.route('/')
