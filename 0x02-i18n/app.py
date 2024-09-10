@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
-"""Basic Babel setup"""
-from flask import Flask, render_template, request, g
-from flask_babel import Babel, _
-from typing import Dict, Union
+"""
+Basic Babel setup for a Flask application with locale and timezone support.
+"""
 import pytz
-from pytz.exceptions import UnknownTimeZoneError
+from typing import Union, Dict
+from flask_babel import Babel, format_datetime
+from flask import Flask, render_template, request, g
 
 
 class Config:
-    """Represents a Flask Babel configuration."""
+    """Represents a Flask Babel configuration.
+    """
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 app = Flask(__name__)
-babel = Babel(app)
-app.url_map.strict_slashes = False
 app.config.from_object(Config)
+app.url_map.strict_slashes = False
+babel = Babel(app)
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -27,17 +29,18 @@ users = {
 
 
 def get_user() -> Union[Dict, None]:
-    """Retrieves a user based on a user id."""
-    user_id = request.args.get('login_as', '')
-    if user_id:
-        return users.get(int(user_id, None))
+    """Retrieves a user based on a user ID from the URL parameter."""
+    login_id = request.args.get('login_as', '')
+    if login_id:
+        return users.get(int(login_id), None)
     return None
 
 
 @app.before_request
 def before_request() -> None:
-    """Set the user in flask.g."""
-    g.user = get_user()
+    """Set the user in flask.g based on the login_as URL parameter."""
+    user = get_user()
+    g.user = user
 
 
 @babel.localeselector
@@ -68,7 +71,7 @@ def get_locale() -> str:
 
 
 @babel.timezoneselector
-def get_timezone():
+def get_timezone() -> str:
     """
     Select the best match for the user's preferred timezone.
     Follows the order of priority:
@@ -86,14 +89,12 @@ def get_timezone():
 
 
 @app.route('/')
-def index() -> str:
-    """default route"""
-    if g.user:
-        return render_template('7-index.html', username=g.user['name'])
-    return render_template("7-index.html",)
+def get_index() -> str:
+    """Render the index page based on the user's login
+    status and show the current time."""
+    g.time = format_datetime()
+    return render_template('index.html')
 
 
-# app.before_request(before_request)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
