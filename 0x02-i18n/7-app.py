@@ -87,8 +87,8 @@ def get_timezone():
 def index() -> str:
     """default route"""
     if g.user:
-        return render_template('5-index.html', username=g.user['name'])
-    return render_template("5-index.html",)
+        return render_template('7-index.html', username=g.user['name'])
+    return render_template("7-index.html",)
 
 
 # app.before_request(before_request)
