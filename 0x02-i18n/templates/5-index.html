@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ g.user['locale'] if g.user and g.user['locale'] else 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('home_title') }}</title>
+</head>
+<body>
+    <h1>{{ _('home_header') }}</h1>
+    {% if username %}
+        <p>{{ _('You are logged in as %(username)s.', username=username) }}</p>
+    {% else %}
+        <p>{{ _('You are not logged in.') }}</p>
+    {% endif %}
+</body>
+</html>
