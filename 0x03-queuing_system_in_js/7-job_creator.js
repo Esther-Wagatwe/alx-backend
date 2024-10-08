@@ -60,10 +60,10 @@ for (const job of jobs) {
             console.log('Notification job', jobNotification.id, 'completed');
         })
         .on('failed', (err) => {
-            console.log('Notification job', job.id, 'failed:', err.message || err.toString());
+            console.log('Notification job', jobNotification.id, 'failed:', err.message || err.toString());
         })
         .on('progress', (progress, _data) => {
-            console.log('Notification job', job.id, `${progress}% complete`);
+            console.log('Notification job', jobNotification.id, `${progress}% complete`);
           });
         jobNotification.save();
 }
